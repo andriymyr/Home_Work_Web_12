@@ -1,8 +1,8 @@
 from fastapi import Depends, Query, APIRouter, Path, HTTPException
 from sqlalchemy.orm import Session
-from src.database.db import get_db
-from src.repository import contacts as repository_contacts
-from src.schemas import ContactModel, ResponseContactModel
+from app.database.db import get_db
+from app.repository import contacts as repository_contacts
+from app.schemas import ContactModel, ResponseContactModel
 from starlette import status
 
 router = APIRouter(prefix="/contacts", tags=["contacts"])

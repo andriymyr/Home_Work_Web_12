@@ -2,8 +2,8 @@ from datetime import datetime, timedelta
 
 from sqlalchemy import extract
 from sqlalchemy.orm import Session
-from src.database.models import Contact
-from src.schemas import ContactModel
+from app.database.models import Contact
+from app.schemas import ContactModel
 
 
 async def get_contacts(limit, offset, db: Session):
