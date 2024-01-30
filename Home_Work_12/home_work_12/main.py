@@ -28,7 +28,7 @@ todo.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 # Підключення роутерів
-app.include_router(contact_router, prefix="/api/v1")
+app.include_router(contact_router, prefix="/api")
 app.include_router(todo_router, prefix="/todo")
 app.include_router(user_router, prefix="/users")
 
@@ -81,19 +81,17 @@ def get_db_session():
 
 
 # Оголошення CRUD операцій
-app.post("/api/v1/contacts/", response_model=ContactCreate)(create_contact)
-app.get("/api/v1/contacts/", response_model=List[ContactResponse])(
+app.post("/api/contacts_post/", response_model=ContactCreate)(create_contact)
+app.get("/api/contacts_get/", response_model=List[ContactResponse])(
     get_contacts
 )  # Виправлено імпорт
-app.get("/api/v1/contacts/{contact_id}", response_model=ContactResponse)(
-    get_contact_by_id
-)
+app.get("/api/contacts/{contact_id}", response_model=ContactResponse)(get_contact_by_id)
 app.put(
-    "/api/v1/contacts/{contact_id}",
+    "/api/contacts_put/{contact_id}",
     response_model=ContactCreate,
     response_model_exclude_unset=True,
 )(update_contact)
-app.delete("/api/v1/contacts/{contact_id}", response_model=None)(delete_contact)
+app.delete("/api/contacts/{contact_id}", response_model=None)(delete_contact)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)

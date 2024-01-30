@@ -9,7 +9,7 @@ router = APIRouter()
 
 
 # Операція створення нового контакту
-@router.post("/contacts/", response_model=ContactCreate)
+@router.post("/contact/", response_model=ContactCreate)
 def create_contact(contact: ContactCreate, db: Session = Depends(get_db)):
     db_contact = Contact(**contact.dict())
     db.add(db_contact)
@@ -25,7 +25,7 @@ def get_contacts(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
 
 
 # Операція отримання контакту за id
-@router.get("/contacts/{contact_id}")
+@router.get("/contact_id/{contact_id}")
 def get_contact(contact_id: int, db: Session = Depends(get_db)):
     contact = db.query(Contact).filter(Contact.id == contact_id).first()
     if contact is None:
@@ -34,7 +34,7 @@ def get_contact(contact_id: int, db: Session = Depends(get_db)):
 
 
 # Операція оновлення контакту за id
-@router.put("/contacts/{contact_id}", response_model=ContactCreate)
+@router.put("/contact_put/{contact_id}", response_model=ContactCreate)
 def update_contact(
     contact_id: int, contact: ContactCreate, db: Session = Depends(get_db)
 ):
@@ -49,7 +49,7 @@ def update_contact(
 
 
 # Операція видалення контакту за id
-@router.delete("/contacts/{contact_id}")
+@router.delete("/contacts_/{contact_id}")
 def delete_contact(contact_id: int, db: Session = Depends(get_db)):
     contact = db.query(Contact).filter(Contact.id == contact_id).first()
     if contact is None:

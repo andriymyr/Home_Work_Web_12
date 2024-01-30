@@ -2,6 +2,7 @@ from datetime import date
 from pydantic_extra_types.phone_numbers import PhoneNumber
 from typing import Optional
 from pydantic import BaseModel, EmailStr, Field, PastDate
+from fastapi.responses import JSONResponse
 
 
 class ContactCreate(BaseModel):
