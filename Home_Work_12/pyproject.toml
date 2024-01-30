@@ -16,6 +16,7 @@ phonenumbers = "^8.13.28"
 pydantic = {extras = ["email"], version = "^2.5.3"}
 pydantic-extra-types = {version = "^2.4.1", extras = ["phone_number"]}
 psycopg2-binary = "^2.9.9"
+pyjwt = "^2.8.0"
 
 
 [build-system]

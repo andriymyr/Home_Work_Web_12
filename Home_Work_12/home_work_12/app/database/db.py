@@ -21,12 +21,12 @@ url = f"postgresql://{username}:{password}@{domain}:5432/{db_name}"
 Base = declarative_base()
 engine = create_engine(url, echo=False, pool_size=5)
 
-DBSession = sessionmaker(bind=engine, autoflush=False, autocommit=False)
+SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
 
 # Dependency
-def get_db():
-    db = DBSession()
+async def get_db():
+    db = SessionLocal()
     try:
         yield db
     except SQLAlchemyError as err:
