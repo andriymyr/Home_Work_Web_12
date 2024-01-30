@@ -17,7 +17,7 @@ password = os.environ.get("PASSWORD")
 db_name = os.environ.get("DB_NAME")
 domain = os.environ.get("DOMAIN")
 
-url = f"postgresql://{username}:{password}@{domain}:5432/{db_name}"
+url = f"postgresql+psycopg2://{username}:{password}@{domain}:5432/{db_name}"
 Base = declarative_base()
 engine = create_engine(url, echo=False, pool_size=5)
 

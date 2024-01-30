@@ -4,12 +4,6 @@ from app.models.users import UserDB
 
 from fastapi import HTTPException
 
-from app.repo.user import UserRepo
-from app.schemas.user import User
-from app.models.users import UserDB
-
-from fastapi import HTTPException
-
 
 class UserService:
     def __init__(self, db) -> None:

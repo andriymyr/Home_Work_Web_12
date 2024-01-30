@@ -1,4 +1,4 @@
-from app.repo.todos import TodoRepo
+from app.repository.todos import TodoRepo
 from app.schemas.schemas import Todo, TodoCreate
 from app.models.todo import TodoDB
 
