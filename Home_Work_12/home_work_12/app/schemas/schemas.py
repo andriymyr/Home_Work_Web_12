@@ -1,8 +1,7 @@
 from datetime import date
 from pydantic_extra_types.phone_numbers import PhoneNumber
 from typing import Optional
-from pydantic import BaseModel, EmailStr, Field, PastDate
-from fastapi.responses import JSONResponse
+from pydantic import BaseModel, EmailStr, Field, PastDate, validator
 
 
 class ContactCreate(BaseModel):
@@ -10,8 +9,14 @@ class ContactCreate(BaseModel):
     last_name: str = Field(min_length=5, max_length=70)
     email: EmailStr = Field(min_length=6, max_length=50)
     phone_number: PhoneNumber = Field()  # (min_length=10, max_length=15)
-    birth_date: date = Field(PastDate())
+    birth_date: date
     additional_data: Optional[str] = Field(min_length=10, max_length=250)
+
+    @validator("birth_date")
+    def validate_past_date(cls, value):
+        if value >= date.today():
+            raise ValueError("Birth date must be in the past")
+        return value
 
 
 class ContactResponse(BaseModel):
